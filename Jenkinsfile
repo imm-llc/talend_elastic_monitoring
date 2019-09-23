@@ -4,7 +4,7 @@ pipeline{
     options { buildDiscarder(logRotator(numToKeepStr: '5')) }
 
     triggers {
-        cron("*/15 * * * *")
+        cron("*/14 * * * *")
     }
 
     environment {

@@ -9,7 +9,7 @@ pipeline{
 
     environment {
         slack_icon = ":fred_zoom:"
-        slack_channel = "#alerts"
+        slack_channel = "#dads-alerts"
         slack_url = "http://slack.imm.corp/api/v1/alert"
     }
 

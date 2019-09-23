@@ -23,11 +23,14 @@ for i in j['hits']['hits']:
 
     stamp = i['_source']['@timestamp']
     level = i['_source']['priority']
+    message = i['_source']['message']
+    logger_name = i['_source']['logger_name']
     if level == "INFO":
+        print(f"Event from {logger_name} is level {level}")
+        print(f"Event message: {message}")
         pass
     else:
-        message = i['_source']['message']
-        logger_name = i['_source']['logger_name']
+        
         if logger_name in ignored_loggers:
             pass
         else:

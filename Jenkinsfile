@@ -23,7 +23,11 @@ pipeline{
         stage("Run ElasticSearch checks"){
             steps{
                 script{
-                    sh "./curl_wrap.sh | ./check.py"
+                    sh """
+                    export slack_icon=${slack_icon}
+                    export slack_channel=${slack_channel}
+                    ./curl_wrap.sh | ./check.py
+                    """
                 }
             }
         }

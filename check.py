@@ -16,6 +16,8 @@ j = json.loads(elastic_json)
 if len(j['hits']['hits']) < 1:
     print("No results retrieved")
     sys.exit(0)
+else:
+    print(f"Analyzing {len(j['hits']['hits'])} events")
 
 for i in j['hits']['hits']:
 

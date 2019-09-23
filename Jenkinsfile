@@ -39,7 +39,7 @@ pipeline{
             echo "========pipeline executed successfully ========"
         }
         failure{
-            echo "========pipeline execution failed========"
+            slackSend (color: "danger", message: "TALEND MONITOR FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}")
         }
     }
 }

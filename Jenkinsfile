@@ -16,7 +16,7 @@ pipeline{
         stage("Install Python requirements"){
             steps{
                 script{
-                    sh "pip3 install -r requirements.txt --user"
+                    sh "/usr/local/bin/pip3 install -r requirements.txt --user"
                 }
             }
         }

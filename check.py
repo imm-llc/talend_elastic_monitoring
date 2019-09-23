@@ -4,6 +4,28 @@ import sys
 import requests
 from os import environ
 
+def slack_alert(logger_name, level, message):
+
+    m = f"""
+    Level: {level}
+    Error Message: {message}
+    Check out the error here: http://talend.imm.com:5601
+    """
+    t = f"Talend Error: {logger_name}"
+
+    icon = environ.get("slack_icon") if environ.get("slack_icon") is not None else ":fred_zoom:"
+    channel = environ.get("slack_channel") if environ.get("slack_channel") is not None else "#alerts"
+    j = {
+        "title": t,
+        "color": "danger",
+        "channel": channel,
+        "username": "TalendElasticBot",
+        "icon": icon,
+        "message": m
+    }
+    
+    requests.post(environ.get('slack_url'), json=j)
+
 elastic_json = ""
 
 ignored_loggers = ["org.talend.administrator.remoterepositorymgt.business.LoginHandler"]
@@ -46,24 +68,4 @@ for i in j['hits']['hits']:
             )
             """
 
-def slack_alert(logger_name, level, message):
 
-    m = f"""
-    Level: {level}
-    Error Message: {message}
-    Check out the error here: http://talend.imm.com:5601
-    """
-    t = f"Talend Error: {logger_name}"
-
-    icon = environ.get("slack_icon") if environ.get("slack_icon") is not None else ":fred_zoom:"
-    channel = environ.get("slack_channel") if environ.get("slack_channel") is not None else "#alerts"
-    j = {
-        "title": t,
-        "color": "danger",
-        "channel": channel,
-        "username": "TalendElasticBot",
-        "icon": icon,
-        "message": m
-    }
-    
-    requests.post(environ.get('slack_url'), json=j)

@@ -7,9 +7,7 @@ from os import environ
 def slack_alert(logger_name, level, message):
 
     m = f"""
-    Level: {level}
-    Error Message: {message}
-    Check out the error here: http://talend.imm.com:5601
+    Level: {level}\nError Message: {message}\nCheck out the error here: http://talend.imm.com:5601
     """
     t = f"Talend Error: {logger_name}"
 
@@ -47,7 +45,7 @@ for i in j['hits']['hits']:
     level = i['_source']['priority']
     message = i['_source']['message']
     logger_name = i['_source']['logger_name']
-    if level == "TEST":
+    if level == "INFOO":
         print(f"Event from {logger_name} is level {level}")
         print(f"Event message: {message}")
         pass

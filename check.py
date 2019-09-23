@@ -45,7 +45,7 @@ for i in j['hits']['hits']:
     level = i['_source']['priority']
     message = i['_source']['message']
     logger_name = i['_source']['logger_name']
-    if level == "INFOO":
+    if level == "INFO":
         print(f"Event from {logger_name} is level {level}")
         print(f"Event message: {message}")
         pass

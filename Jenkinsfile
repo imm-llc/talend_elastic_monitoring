@@ -3,6 +3,10 @@ pipeline{
     
     options { buildDiscarder(logRotator(numToKeepStr: '5')) }
 
+    triggers {
+        cron("*/15 * * * *")
+    }
+
     environment {
         slack_icon = ":fred_zoom:"
         slack_channel = "#alerts"
